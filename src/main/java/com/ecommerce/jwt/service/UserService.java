@@ -3,6 +3,7 @@ package com.ecommerce.jwt.service;
 import java.util.HashSet;
 import java.util.Set;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.ecommerce.jwt.entity.Role;
@@ -18,6 +19,13 @@ public class UserService {
 	
 	@Autowired
 	private RoleRepository roleRepository;
+	
+	@Autowired
+	private PasswordEncoder passwordEncoder;
+	
+	public User registeredNewUser(User user) {
+		return userRepository.save(user);
+	}
 	
 	public User registerNewUser(User user) {
 		return userRepository.save(user);
@@ -39,7 +47,7 @@ public class UserService {
 		adminUser.setUserName("admin123");
 		adminUser.setFirstName("admin");
 		adminUser.setLastName("admin");
-		adminUser.setPassword("admin@pass");		
+		adminUser.setPassword(getEncodedPassword("admin@pass"));		
 		Set<Role> adminRoles = new HashSet<>();
 		adminRoles.add(adminRole);
 		adminUser.setRole(adminRoles);
@@ -54,5 +62,9 @@ public class UserService {
 		userRoles.add(userRole);
 		user.setRole(userRoles);
 		userRepository.save(user);
+	}
+	
+	public String getEncodedPassword(String password) {
+		return passwordEncoder.encode(password);
 	}
 }
