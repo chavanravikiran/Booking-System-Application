@@ -1,7 +1,5 @@
 package com.ecommerce.jwt.entity;
 
-import java.util.Set;
-
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -15,5 +13,5 @@ public class JwtRequest {
 
 	private String userName;
 	
-	private String userPassword;
+	private String password;
 }

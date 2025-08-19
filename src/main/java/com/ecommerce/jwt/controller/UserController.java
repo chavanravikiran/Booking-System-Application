@@ -1,6 +1,7 @@
 package com.ecommerce.jwt.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -28,11 +29,13 @@ public class UserController {
 	}
 	
 	@GetMapping({"/forAdmin"})
+	@PreAuthorize("hasRole('Admin')")
 	public String forAdmin() {
 		return "This is accessible for only Admin";
 	}
 	
 	@GetMapping({"/forUser"})
+	@PreAuthorize("hasRole('User')")
 	public String forUser() {
 		return "This is accessible for only User";
 	}
