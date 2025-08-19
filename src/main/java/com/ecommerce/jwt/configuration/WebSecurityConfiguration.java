@@ -16,8 +16,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
-import com.ecommerce.jwt.service.JwtService;
-
 @Configuration
 @EnableWebSecurity
 @EnableMethodSecurity(prePostEnabled = true)
@@ -43,7 +41,7 @@ public class WebSecurityConfiguration {
             .cors().and()
             .csrf().disable()
             .authorizeHttpRequests()
-                .requestMatchers("/**").permitAll()
+                .requestMatchers("/authenticate", "/registerNewUser", "/h2-console/**").permitAll()
                 .anyRequest().authenticated()
             .and()
             .exceptionHandling()

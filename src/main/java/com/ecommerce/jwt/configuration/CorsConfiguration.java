@@ -3,7 +3,6 @@ package com.ecommerce.jwt.configuration;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
-import org.springframework.web.util.pattern.PathPattern;
 
 @Configuration
 public class CorsConfiguration {
@@ -18,7 +17,7 @@ public class CorsConfiguration {
 			
 			@Override
 			public void addCorsMappings(CorsRegistry registry) {
-				registry.addMapping(	"/**")
+				registry.addMapping("/**")
 				.allowedMethods(GET, POST, DELETE, PUT)
 				.allowedHeaders("*")
 				.allowedOriginPatterns("*")

@@ -1,25 +1,29 @@
 package com.ecommerce.jwt.util;
 
+import java.security.Key;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Function;
 
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Component;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
+import io.jsonwebtoken.security.Keys;
 
 @Component
 public class JwtUtil {
 
-	
-	private static final String SECRET_KEY = "Ecommerce project";
-	
+	private static final String SECRET_KEY = "EcommerceProjectSecretKeyForJwtAuthentication123456789012345678901234567890"; 
+	//private final Key key = Keys.secretKeyFor(SignatureAlgorithm.HS512);
 	private static final int TOKEN_VALIDITY= 3600 * 5;
+	
+	 private Key getSigningKey() {
+	        return Keys.hmacShaKeyFor(SECRET_KEY.getBytes());
+	    }
 
 	public String getUserNameFromToken(String token) {
 		return getClaimFromToken(token, Claims::getSubject);
@@ -28,10 +32,6 @@ public class JwtUtil {
 	private<T> T getClaimFromToken(String token, Function<Claims, T> claimResolver) {
 		final Claims claims= getAllClaimsFromToken(token);
 		return claimResolver.apply(claims);
-	}
-	
-	private Claims getAllClaimsFromToken(String token) {
-		return Jwts.parser().setSigningKey(SECRET_KEY).parseClaimsJws(token).getBody();
 	}
 	
 	public boolean validateToken(String token, UserDetails userDetails) {
@@ -49,16 +49,23 @@ public class JwtUtil {
 		return getClaimFromToken(token, Claims::getExpiration);
 	}
 	
-	private String generateToken(UserDetails userDetails) {
-		Map<String, Object> claims= new HashMap<>();
-		
-		return Jwts.builder()
-				.setClaims(claims)
-				.setSubject(userDetails.getUsername())
-				.setIssuedAt(new Date(System.currentTimeMillis()))
-				.setExpiration(new Date(System.currentTimeMillis() + TOKEN_VALIDITY * 1000))
-				.signWith(SignatureAlgorithm.HS512, SECRET_KEY)
-				.compact()
-				;
-	}
+	public String generateToken(UserDetails userDetails) {
+        Map<String, Object> claims = new HashMap<>();
+
+        return Jwts.builder()
+                .setClaims(claims)
+                .setSubject(userDetails.getUsername())
+                .setIssuedAt(new Date(System.currentTimeMillis()))
+                .setExpiration(new Date(System.currentTimeMillis() + TOKEN_VALIDITY * 1000))
+                .signWith(getSigningKey(), SignatureAlgorithm.HS512)
+                .compact();
+    }
+
+    private Claims getAllClaimsFromToken(String token) {
+        return Jwts.parserBuilder()
+                .setSigningKey(getSigningKey())
+                .build()
+                .parseClaimsJws(token)
+                .getBody();
+    }
 }

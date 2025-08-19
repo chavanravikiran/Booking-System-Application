@@ -28,6 +28,16 @@ public class UserService {
 	}
 	
 	public User registerNewUser(User user) {
+		
+		//Role role= roleRepository.findById("User").get();
+		Role role = roleRepository.findByRoleName("User")
+			    .orElseThrow(() -> new RuntimeException("Role not found: User"));
+		
+		Set<Role> roles= new HashSet<>();
+		roles.add(role);
+		user.setRole(roles);	
+		user.setPassword(getEncodedPassword(user.getPassword()));
+		
 		return userRepository.save(user);
 	}
 	
@@ -53,15 +63,15 @@ public class UserService {
 		adminUser.setRole(adminRoles);
 		userRepository.save(adminUser);
 		
-		User user= new User();
-		user.setUserName("devashree17");
-		user.setFirstName("devashree");
-		user.setLastName("lonkar");
-		user.setPassword("devashree@pass");		
-		Set<Role> userRoles = new HashSet<>();
-		userRoles.add(userRole);
-		user.setRole(userRoles);
-		userRepository.save(user);
+		//User user= new User();
+//		user.setUserName("devashree17");
+//		user.setFirstName("devashree");
+//		user.setLastName("lonkar");
+//		user.setPassword(getEncodedPassword("devashree@pass"));
+//		Set<Role> userRoles = new HashSet<>();
+//		userRoles.add(userRole);
+//		user.setRole(userRoles);
+//		userRepository.save(user);
 	}
 	
 	public String getEncodedPassword(String password) {
