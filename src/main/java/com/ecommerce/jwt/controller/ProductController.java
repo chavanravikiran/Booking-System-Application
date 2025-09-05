@@ -69,4 +69,9 @@ public class ProductController {
 		productService.deleteProductDetails(productId);
 	}
 	
+	@GetMapping({"/getProductDetails/{productId}"})
+	public Product getProductDetails(@PathVariable("productId") Long productId) {
+		return productService.getProductDetailsById(productId);
+	}
+	
 }
