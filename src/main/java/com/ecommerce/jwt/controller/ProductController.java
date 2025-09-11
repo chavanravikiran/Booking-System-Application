@@ -20,6 +20,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.ecommerce.jwt.entity.ImageModel;
 import com.ecommerce.jwt.entity.Product;
+import com.ecommerce.jwt.repository.ImageModelRepository;
 import com.ecommerce.jwt.repository.ProductRepository;
 import com.ecommerce.jwt.service.ProductService;
 
@@ -29,15 +30,25 @@ public class ProductController {
 	@Autowired
 	private ProductService productService;
 	
+	@Autowired
+	private ImageModelRepository imageModelRepository;
+	
 	@PreAuthorize("hasRole('Admin')")
 	@PostMapping(value = {"/addNewProduct"}, consumes = {MediaType.MULTIPART_FORM_DATA_VALUE})
 	public Product addNewProduct(@RequestPart("product") Product product,
 								@RequestPart("imageFile") MultipartFile[] file) {
 //		return productService.addNewProduct(product);
+//		ImageModel im = new ImageModel();
+//		im.setType()
+		
+		//imageModelRepository.save(im);
 		System.out.println("line 37");
 		try {
+			product.setProductId(null);
 			Set<ImageModel> images= uploadImage(file);
-			product.setProductImageSet(images);
+			
+			//product.setProductImage(images);
+			product.setProductImageSet(images); 
 			return productService.addNewProduct(product);
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
@@ -59,16 +70,19 @@ public class ProductController {
 		return imageModels;
 	}
 	
+
 	@GetMapping({"/getAllProducts"})
 	public List<Product> getAllProducts(){
 		return productService.getAllProducts();
 	}
 	
+	@PreAuthorize("hasRole('Admin')")
 	@DeleteMapping({"/deleteProductDetails/{productId}"})
 	public void deleteProductDetails(@PathVariable("productId") Long productId) {
 		productService.deleteProductDetails(productId);
 	}
 	
+	@PreAuthorize("hasRole('Admin')")
 	@GetMapping({"/getProductDetails/{productId}"})
 	public Product getProductDetails(@PathVariable("productId") Long productId) {
 		return productService.getProductDetailsById(productId);
