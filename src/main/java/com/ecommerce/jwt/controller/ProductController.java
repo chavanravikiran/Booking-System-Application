@@ -81,8 +81,7 @@ public class ProductController {
 	public void deleteProductDetails(@PathVariable("productId") Long productId) {
 		productService.deleteProductDetails(productId);
 	}
-	
-	@PreAuthorize("hasRole('Admin')")
+
 	@GetMapping({"/getProductDetails/{productId}"})
 	public Product getProductDetails(@PathVariable("productId") Long productId) {
 		return productService.getProductDetailsById(productId);
