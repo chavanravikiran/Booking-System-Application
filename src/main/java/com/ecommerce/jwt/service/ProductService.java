@@ -1,5 +1,6 @@
 package com.ecommerce.jwt.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,5 +29,18 @@ public class ProductService {
 	
 	public Product getProductDetailsById(Long productId) {
 	   return productRepository.findById(productId).get();
+	}
+	
+	public List<Product> getProductDetails(boolean isSingleProductCheckout, Integer productId) {
+		if(isSingleProductCheckout) {
+			
+			List<Product> list= new ArrayList<>();
+			Product product = productRepository.findById(productId.longValue()).orElse(null);
+			list.add(product);
+			return list;
+		}else {
+			
+		}
+		return new ArrayList<>();
 	}
 }
