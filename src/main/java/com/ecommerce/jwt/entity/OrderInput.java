@@ -28,7 +28,7 @@ public class OrderInput {
 	@SequenceGenerator(name = "order_input_seq", sequenceName = "order_input_seq", allocationSize = 1)
 	private Long orderInputId;
 	private String fullName;
-	private String fullAddres;
+	private String fullAddress;
 	private String contactNumber;
 	private String alternateContactNumber;
 	
