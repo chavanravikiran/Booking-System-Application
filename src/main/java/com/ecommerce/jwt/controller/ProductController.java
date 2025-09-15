@@ -82,10 +82,10 @@ public class ProductController {
 		productService.deleteProductDetails(productId);
 	}
 
-//	@GetMapping({"/getProductDetails/{productId}"})
-//	public Product getProductDetails(@PathVariable("productId") Long productId) {
-//		return productService.getProductDetailsById(productId);
-//	}
+	@GetMapping({"/getProductDetails/{productId}"})
+	public Product getProductDetails(@PathVariable("productId") Long productId) {
+		return productService.getProductDetailsById(productId);
+	}
 	
 	@GetMapping({"/getProductDetails/{isSingleProductCheckout}/{productId}"})
 	public List<Product> getProductDetails(@PathVariable(name= "isSingleProductCheckout") boolean isSingleProductCheckout, 

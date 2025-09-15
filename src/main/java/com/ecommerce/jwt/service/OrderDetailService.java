@@ -40,11 +40,11 @@ public class OrderDetailService {
 			
 			OrderDetail orderDetail = new OrderDetail();
 			orderDetail.setOrderFullName(orderInput.getFullName());
-			orderDetail.setOrderFullAddres(orderInput.getFullAddres());
+			orderDetail.setOrderFullAddres(orderInput.getFullAddress());
 			orderDetail.setOrderContactNumber(orderInput.getContactNumber());
 			orderDetail.setOrderAlternameContactNumber(orderInput.getAlternateContactNumber());
 			orderDetail.setOrderStatus(ORDER_PLACED);
-			orderDetail.setOrderAmount(product.getProductActualPrice() * o.getQuantity());
+			orderDetail.setOrderAmount(product.getProductDiscountedPrice() * o.getQuantity());
 			orderDetail.setProduct(product);
 			orderDetail.setUser(user);
 			
