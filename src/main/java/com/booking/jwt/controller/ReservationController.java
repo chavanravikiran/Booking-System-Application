@@ -2,9 +2,9 @@ package com.booking.jwt.controller;
 
 import java.math.BigDecimal;
 import java.security.Principal;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.data.web.SortDefault;
@@ -24,14 +24,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.server.ResponseStatusException;
 import com.booking.jwt.dto.CreateReservationRequest;
 import com.booking.jwt.dto.ReservationDTO;
-import com.booking.jwt.entity.Reservation;
 import com.booking.jwt.entity.ReservationStatus;
 import com.booking.jwt.service.ReservationService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.domain.Pageable;
 
 @RestController
 @RequestMapping("/reservations")
@@ -68,27 +65,6 @@ public class ReservationController {
     public ResponseEntity<ReservationDTO> getById(@PathVariable Long id, Principal principal) {
         return reservationService.getByIdWithAccessCheck(id, principal);
     }
-
-	//Pending
-//    @PostMapping
-//    @PreAuthorize("hasAnyRole('ROLE_USER','ROLE_ADMIN')")
-//    public ResponseEntity<ReservationDTO> create(@RequestBody CreateReservationRequest req, Principal principal) {
-//        String username = principal.getName();
-//        Long uid = reservationService.getUserIdByUsername(username);
-//        Reservation created = reservationService.createReservation(uid, req.getResourceId(), req.getPrice(), req.getStartTime(), req.getEndTime(), true);
-//        ReservationDTO dto = ReservationDTO.builder()
-//                .reservationId(created.getReservationId())
-//                .resourceId(created.getResource().getResourceId())
-//                .userId(created.getUser().getUserId())
-//                .status(created.getStatus())
-//                .price(created.getPrice())
-//                .startTime(created.getStartTime())
-//                .endTime(created.getEndTime())
-//                .createdAt(created.getCreatedAt())
-//                .updatedAt(created.getUpdatedAt())
-//                .build();
-//        return ResponseEntity.status(HttpStatus.CREATED).body(dto);
-//    }
 
 	@PostMapping
     @PreAuthorize("hasAnyRole('ROLE_USER','ROLE_ADMIN')")

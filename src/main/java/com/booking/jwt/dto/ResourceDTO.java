@@ -1,7 +1,6 @@
 package com.booking.jwt.dto;
 
 import com.booking.jwt.entity.Resource;
-
 import lombok.*;
 
 @Data
