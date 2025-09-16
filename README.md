@@ -123,4 +123,8 @@ Run unit tests:
   Seed Users
   Documented assumptions & trade-offs
 
-[Swagger API Documentation PDF](docs/Swagger-Documentation-BookingSystem.pdf)
+## 📄 Swagger Documentation
+
+You can view or download the Swagger documentation PDF here:
+
+[Swagger Documentation PDF](docs/Swagger-Documentation-BookingSystem.pdf)
