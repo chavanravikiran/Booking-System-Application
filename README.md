@@ -127,4 +127,4 @@ Run unit tests:
 
 You can view or download the Swagger documentation PDF here:
 
-[Swagger Documentation PDF](docs/Swagger-Documentation-BookingSystem.pdf)
+[Swagger Documentation PDF](src/main/java/docs/Swagger-Documentation-BookingSystem.pdf)
