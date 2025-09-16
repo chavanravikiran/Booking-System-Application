@@ -1,4 +1,3 @@
-"# EcommerceBackend" 
 # 📘 Booking System Application
 
 A RESTful **Booking System** built with **Spring Boot 3.x** and **Java 17**, using **PostgreSQL** as the default database.  
