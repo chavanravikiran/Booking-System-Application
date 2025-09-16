@@ -44,7 +44,8 @@ public class ReservationController {
     @ResponseStatus(HttpStatus.OK)
     public Page<ReservationDTO> list(
             Principal principal,@PageableDefault(page = 0, size = 10)
-            @SortDefault(sort = "createdAt", direction = Sort.Direction.DESC)
+//            @SortDefault(sort = "createdAt", direction = Sort.Direction.DESC)
+            @RequestParam(defaultValue = "createdOn,desc") String[] sort,
             Pageable pageable,
             @RequestParam(required = false) ReservationStatus status,
             @RequestParam(required = false) BigDecimal minPrice,
