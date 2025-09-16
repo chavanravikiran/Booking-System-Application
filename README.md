@@ -122,3 +122,9 @@ Run unit tests:
   Swagger/OpenAPI docs
   Seed Users
   Documented assumptions & trade-offs
+
+## 📄 Swagger Documentation
+
+You can view or download the Swagger documentation PDF here:
+
+[Swagger Documentation PDF](docs/Swagger-Documentation-BookingSystem.pdf)
