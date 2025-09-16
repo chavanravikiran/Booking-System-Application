@@ -41,7 +41,6 @@ public class WebSecurityConfiguration {
             .cors().and()
             .csrf().disable()
             .authorizeHttpRequests()
-//                .requestMatchers("/authenticate", "/registerNewUser","/getAllProducts","/getProductDetails/{productId}","/h2-console/**").permitAll()
             .requestMatchers("/auth/**",
             		 "/v3/api-docs/**",
                      "/swagger-ui/**",
@@ -54,7 +53,6 @@ public class WebSecurityConfiguration {
             .sessionManagement()
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 
-        // Add JWT filter
         http.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
 
         return http.build();

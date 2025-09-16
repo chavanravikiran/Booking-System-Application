@@ -30,7 +30,6 @@ public class UserService {
 	
 	public User registerNewUser(User user) {
 		
-		//Role role= roleRepository.findById("User").get();
 		Role role = roleRepository.findByRoleName("User")
 			    .orElseThrow(() -> new RuntimeException("Role not found: User"));
 		

@@ -17,7 +17,7 @@ import io.jsonwebtoken.security.Keys;
 @Component
 public class JwtUtil {
 
-	private static final String SECRET_KEY = "EcommerceProjectSecretKeyForJwtAuthentication123456789012345678901234567890"; 
+	private static final String SECRET_KEY = "BookingSystemSecretKeyForJwtAuthentication123456789012345678901234567890123"; 
 	private static final int TOKEN_VALIDITY= 3600 * 5;
 	
 	 private Key getSigningKey() {

@@ -2,10 +2,8 @@ package com.booking.jwt.dto;
 
 import java.math.BigDecimal;
 import java.time.Instant;
-
 import com.booking.jwt.entity.Reservation;
 import com.booking.jwt.entity.ReservationStatus;
-
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
