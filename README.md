@@ -122,3 +122,5 @@ Run unit tests:
   Swagger/OpenAPI docs
   Seed Users
   Documented assumptions & trade-offs
+
+[Swagger API Documentation PDF](docs/Swagger-Documentation-BookingSystem.pdf)
