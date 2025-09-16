@@ -1,4 +1,3 @@
-"# EcommerceBackend" 
 # 📘 Booking System Application
 
 A RESTful **Booking System** built with **Spring Boot 3.x** and **Java 17**, using **PostgreSQL** as the default database.  
@@ -63,7 +62,7 @@ cd Booking-System-Application
   springdoc.swagger-ui.path=/swagger-ui.html
 
 👍 JWT Config in JwtUtil
-  private static final String SECRET_KEY = "BookingSystemSecretKeyForJwtAuthentication123456789012345678901234567890123"; 
+  private static final String SECRET_KEY = "EcommerceProjectSecretKeyForJwtAuthentication123456789012345678901234567890"; 
   private static final int TOKEN_VALIDITY= 3600 * 5;
 
 👉Build and Run the Application
