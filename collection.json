@@ -1,0 +1,407 @@
+{
+	"info": {
+		"_postman_id": "d0d01b1b-9f65-431e-ab6f-98fd581ba847",
+		"name": "Booking System",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "22819064"
+	},
+	"item": [
+		{
+			"name": "Generate Auth Token",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"userName\":\"ADMIN\",\r\n    \"password\":\"Admin@123\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8085/auth/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8085",
+					"path": [
+						"auth",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Resource (ADMIN only)",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJBRE1JTiIsImlhdCI6MTc1ODA0MjY0NiwiZXhwIjoxNzU4MDYwNjQ2fQ.dV1KVLH_9U4G6gFXUXS26FGdOYr6cyOP-0yxv92GijxVcX_pFgurr4ZJyTpc2voY64UgqNMJsa6NNKDjU8ESvg",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"name\": \"Meeting Room\",\r\n  \"type\": \"Room B1\",\r\n  \"description\": \"Big meeting room\",\r\n  \"capacity\": 25,\r\n  \"active\": true\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8085/resources",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8085",
+					"path": [
+						"resources"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Resource by ID",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJBRE1JTiIsImlhdCI6MTc1ODA0MjY0NiwiZXhwIjoxNzU4MDYwNjQ2fQ.dV1KVLH_9U4G6gFXUXS26FGdOYr6cyOP-0yxv92GijxVcX_pFgurr4ZJyTpc2voY64UgqNMJsa6NNKDjU8ESvg",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8085/resources/3",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8085",
+					"path": [
+						"resources",
+						"3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "List Resources (Paginated)",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJBRE1JTiIsImlhdCI6MTc1ODA0MjY0NiwiZXhwIjoxNzU4MDYwNjQ2fQ.dV1KVLH_9U4G6gFXUXS26FGdOYr6cyOP-0yxv92GijxVcX_pFgurr4ZJyTpc2voY64UgqNMJsa6NNKDjU8ESvg",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8085/resources?page=0&size=10",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8085",
+					"path": [
+						"resources"
+					],
+					"query": [
+						{
+							"key": "page",
+							"value": "0"
+						},
+						{
+							"key": "size",
+							"value": "10"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Resource (ADMIN only)",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJBRE1JTiIsImlhdCI6MTc1ODA0MjY0NiwiZXhwIjoxNzU4MDYwNjQ2fQ.dV1KVLH_9U4G6gFXUXS26FGdOYr6cyOP-0yxv92GijxVcX_pFgurr4ZJyTpc2voY64UgqNMJsa6NNKDjU8ESvg",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"name\": \"Conference Room B10\",\r\n  \"type\": \"Room\",\r\n  \"description\": \"Updated description\",\r\n  \"capacity\": 30,\r\n  \"active\": true\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8085/resources/4",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8085",
+					"path": [
+						"resources",
+						"4"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Resource (ADMIN only)",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJBRE1JTiIsImlhdCI6MTc1ODA0MjY0NiwiZXhwIjoxNzU4MDYwNjQ2fQ.dV1KVLH_9U4G6gFXUXS26FGdOYr6cyOP-0yxv92GijxVcX_pFgurr4ZJyTpc2voY64UgqNMJsa6NNKDjU8ESvg",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8085/resources/4",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8085",
+					"path": [
+						"resources",
+						"4"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Reservation",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJBRE1JTiIsImlhdCI6MTc1ODA0MjY0NiwiZXhwIjoxNzU4MDYwNjQ2fQ.dV1KVLH_9U4G6gFXUXS26FGdOYr6cyOP-0yxv92GijxVcX_pFgurr4ZJyTpc2voY64UgqNMJsa6NNKDjU8ESvg",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"resourceId\": 2,\r\n  \"price\": 4500.00,\r\n  \"startTime\": \"2025-09-20T14:00:00Z\",\r\n  \"endTime\": \"2025-09-20T16:00:00Z\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8085/reservations",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8085",
+					"path": [
+						"reservations"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Reservation by ID",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJBRE1JTiIsImlhdCI6MTc1ODA0MjY0NiwiZXhwIjoxNzU4MDYwNjQ2fQ.dV1KVLH_9U4G6gFXUXS26FGdOYr6cyOP-0yxv92GijxVcX_pFgurr4ZJyTpc2voY64UgqNMJsa6NNKDjU8ESvg",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8085/reservations/4",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8085",
+					"path": [
+						"reservations",
+						"4"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Reservation",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJBRE1JTiIsImlhdCI6MTc1ODA0MjY0NiwiZXhwIjoxNzU4MDYwNjQ2fQ.dV1KVLH_9U4G6gFXUXS26FGdOYr6cyOP-0yxv92GijxVcX_pFgurr4ZJyTpc2voY64UgqNMJsa6NNKDjU8ESvg",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"resourceId\": 1,\r\n  \"price\": 290.00,\r\n  \"startTime\": \"2025-09-20T15:00:00Z\",\r\n  \"endTime\": \"2025-09-20T17:00:00Z\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8085/reservations/4",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8085",
+					"path": [
+						"reservations",
+						"4"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "List Reservations (with filters + pagination)",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJBRE1JTiIsImlhdCI6MTc1ODA0MjY0NiwiZXhwIjoxNzU4MDYwNjQ2fQ.dV1KVLH_9U4G6gFXUXS26FGdOYr6cyOP-0yxv92GijxVcX_pFgurr4ZJyTpc2voY64UgqNMJsa6NNKDjU8ESvg",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8085/reservations?status=PENDING&minPrice=100&maxPrice=5000&page=0&size=5&sort=createdOn,desc",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8085",
+					"path": [
+						"reservations"
+					],
+					"query": [
+						{
+							"key": "status",
+							"value": "PENDING"
+						},
+						{
+							"key": "minPrice",
+							"value": "100"
+						},
+						{
+							"key": "maxPrice",
+							"value": "5000"
+						},
+						{
+							"key": "page",
+							"value": "0"
+						},
+						{
+							"key": "size",
+							"value": "5"
+						},
+						{
+							"key": "sort",
+							"value": "createdOn,desc"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Reservation",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJBRE1JTiIsImlhdCI6MTc1ODA0MjY0NiwiZXhwIjoxNzU4MDYwNjQ2fQ.dV1KVLH_9U4G6gFXUXS26FGdOYr6cyOP-0yxv92GijxVcX_pFgurr4ZJyTpc2voY64UgqNMJsa6NNKDjU8ESvg",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8085/reservations/5",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8085",
+					"path": [
+						"reservations",
+						"5"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
